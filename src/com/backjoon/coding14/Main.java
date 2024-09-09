@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -19,6 +18,12 @@ public class Main {
 		
 		for(int i = 0; i<N; i++) {
 			st = new StringTokenizer(br.readLine());
+			int result = Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken());
+			bw.write(String.valueOf(result + "\n"));
 		}
+		
+		bw.flush();
+		br.close();
+		bw.close();
 	}
 }
