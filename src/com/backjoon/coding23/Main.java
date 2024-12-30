@@ -1,60 +1,41 @@
 package com.backjoon.coding23;
 
-import java.util.List;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		// 아직 진행중
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int N = Integer.parseInt(st.nextToken());
-		int S = Integer.parseInt(st.nextToken()); 
+		int S = Integer.parseInt(st.nextToken());
+		
+		int[] a = new int[N+1];
 		
 		st = new StringTokenizer(br.readLine());
 		
-		List<Integer> numbers = new ArrayList<>();
-		List<Integer> sumList = new ArrayList<>();
-		
-		while(st.hasMoreTokens()) {
-			numbers.add(Integer.parseInt(st.nextToken()));
-		}
-		
-		int add = 0;
-		int result = 0;
 		for(int i=0; i<N; i++) {
-			result = i;
-			add += numbers.get(i).intValue();
-			sumList.add(add);
+			a[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		
+		int start = 0;
+		int end = 0;
+		int len = Integer.MAX_VALUE;
 		int sum = 0;
-		for(int i=1; i<sumList.size(); i++) {
-			for(int j = sumList.size() - 1; j>i; j--) {
-				sum = sumList.get(j) - sumList.get(i-1);
-				if( S <= sum ) {
-					int length = j - (i-1);
-					if( length < result ) {
-						result = length;
-					}
-				}
+		
+		while(start <= end & end <= N) {
+			if( sum < S ) {
+				sum+=a[end++];
+			} else if( sum >= S ) {
+				len = Math.min(len, end-start);
+				sum-=a[start++];
 			}
 		}
 		
-		bw.write(String.valueOf(result));
-		bw.flush();
-		
+		System.out.println(len==Integer.MAX_VALUE ? 0 : len);
 		br.close();
-		bw.close();
 	}
 }
