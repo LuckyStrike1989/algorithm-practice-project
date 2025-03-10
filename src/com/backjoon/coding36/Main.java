@@ -33,6 +33,7 @@ public class Main {
 		
 		List<String> result = mapToList.stream().sorted((s1, s2) -> s1.compareTo(s2)).collect(Collectors.toList());
 		
+		// 결과
 		System.out.println(result.size());
 		for(String s : result)
 			System.out.println(s);
